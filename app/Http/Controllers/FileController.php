@@ -13,7 +13,10 @@ class FileController
 
     public function upload(Request $request)
     {
-        return $this->fileService->upload($request->user(), $request->all());
+        return $this->fileService->upload($request->user(), [
+            ...$request->all(),
+            'file' => $request->file('file'),
+        ]);
     }
 
     public function show(string $id)
